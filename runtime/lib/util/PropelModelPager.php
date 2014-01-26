@@ -394,7 +394,7 @@ class PropelModelPager implements IteratorAggregate, Countable
 
     public function getIterator()
     {
-        return $this->getResults()->getIterator();
+        return $this->getResults();
     }
 
     /**
@@ -405,6 +405,6 @@ class PropelModelPager implements IteratorAggregate, Countable
      */
     public function count()
     {
-        return $this->getNbResults();
+        return count($this->getResults());
     }
 }
