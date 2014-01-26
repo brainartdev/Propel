@@ -1986,16 +1986,8 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
         // Perform type-casting to ensure that we can use type-sensitive
         // checking in mutators.
         if ($col->isPhpPrimitiveType()) {
-            if($col->isTextType()) {
-              $script .= "
-        if (\$v !== null) {";
-            } else {
-              $script .= "
-        if (\$v !== null && is_numeric(\$v)) {"; 
-            }
-            
-            
             $script .= "
+        if (\$v !== null && is_numeric(\$v)) {
             \$v = (" . $col->getPhpType() . ") \$v;
         }
 ";
@@ -4016,7 +4008,7 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
                       \$this->{$collName}Partial = true;
                     }
 
-                    \$$collName" . "->getInternalIterator()->rewind();
+                    reset(\$$collName" . ");
 
                     return \$$collName;
                 }
@@ -5830,9 +5822,6 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
 
         foreach ($vars as $varName) {
             $script .= "
-        if (\$this->$varName instanceof PropelCollection) {
-            \$this->{$varName}->clearIterator();
-        }
         \$this->$varName = null;";
         }
 
