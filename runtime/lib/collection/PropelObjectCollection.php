@@ -145,7 +145,7 @@ class PropelObjectCollection extends PropelCollection
         }
         $ret = array();
         $keyGetterMethod = 'get' . $keyColumn;
-        foreach ($this as $key => $obj) {
+        foreach ($this->data as $key => $obj) {
             $key = null === $keyColumn ? $key : $obj->$keyGetterMethod();
             $key = $usePrefix ? ($this->getModel() . '_' . $key) : $key;
             $ret[$key] = $obj;
