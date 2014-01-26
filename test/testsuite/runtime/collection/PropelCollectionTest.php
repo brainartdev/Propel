@@ -332,26 +332,6 @@ class PropelCollectionTest extends BookstoreTestBase
         $this->assertEquals($col, $col2, 'PropelCollection is serializable');
     }
 
-    public function testGetIterator()
-    {
-        $data = array('bar1', 'bar2', 'bar3');
-        $col = new PropelCollection($data);
-        $it1 = $col->getIterator();
-        $it2 = $col->getIterator();
-        $this->assertNotSame($it1, $it2, 'getIterator() returns always a new iterator');
-    }
-
-    public function testGetInternalIterator()
-    {
-        $data = array('bar1', 'bar2', 'bar3');
-        $col = new PropelCollection($data);
-        $it1 = $col->getInternalIterator();
-        $it2 = $col->getINternalIterator();
-        $this->assertSame($it1, $it2, 'getInternalIterator() returns always the same iterator');
-        $col->getInternalIterator()->next();
-        $this->assertEquals('bar2', $col->getInternalIterator()->current(), 'getInternalIterator() returns always the same iterator');
-    }
-
     public function testGetPeerClass()
     {
         $col = new PropelCollection();
