@@ -725,4 +725,13 @@ class PropelCollection implements ArrayAccess, SeekableIterator, Countable, Seri
 
         return $ret;
     }
+    
+    
+    // sorting functionalities that was defined in ArrayObject
+
+    public function uasort($value_compare_func)
+    {
+        uasort($this->data, $value_compare_func);
+    }
+    
 }
